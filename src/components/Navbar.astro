@@ -1,0 +1,78 @@
+---
+const links = [
+  { href: '#about', label: 'about' },
+  { href: '#projects', label: 'projects' },
+  { href: '#experience', label: 'experience' },
+  { href: '#contact', label: 'contact' },
+];
+---
+
+<nav id="navbar">
+  <div class="nav-inner container">
+    <a href="#hero" class="logo">farzan<span class="accent">.</span></a>
+    <ul class="nav-links">
+      {links.map(l => <li><a href={l.href}>{l.label}</a></li>)}
+    </ul>
+  </div>
+</nav>
+
+<style>
+  #navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.25rem 1.5rem;
+    transition: background 0.2s, border-color 0.2s;
+    border-bottom: 1px solid transparent;
+  }
+
+  #navbar.scrolled {
+    background: rgba(17, 17, 17, 0.95);
+    border-color: var(--border);
+    backdrop-filter: blur(8px);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .logo {
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-right: auto;
+  }
+
+  .accent { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+  }
+
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    transition: color 0.15s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+  }
+</style>
+
+<script>
+  const nav = document.getElementById('navbar')!;
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+</script>

@@ -1,0 +1,142 @@
+---
+const projects = [
+  {
+    name: 'guddy-cn',
+    description: 'Cloud-native fitness API built with Go. Microservices architecture with a gateway service and an exercises service, PostgreSQL backend, Kubernetes deployment, and full Swagger/OpenAPI documentation.',
+    tags: ['Go', 'Microservices', 'Kubernetes', 'Docker', 'PostgreSQL', 'REST API'],
+    github: 'https://github.com/Farzan-Kh/guddy-cn',
+    live: '',
+  },
+  {
+    name: 'SourceSec',
+    description: 'Static source code analysis web application. Scans codebases for security vulnerabilities and code quality issues through a Django-powered interface.',
+    tags: ['Python', 'Django', 'Static Analysis', 'Security'],
+    github: 'https://github.com/Farzan-Kh/SourceSec',
+    live: '',
+  },
+  {
+    name: 'topTyper',
+    description: 'Terminal-based typing speed game built as a TUI application. Tracks WPM, accuracy, and progress across sessions.',
+    tags: ['Python', 'TUI', 'Terminal'],
+    github: 'https://github.com/Farzan-Kh/topTyper',
+    live: '',
+  },
+  {
+    name: '25Blackjack',
+    description: 'Custom Blackjack variant with a Monte Carlo reinforcement learning agent. Explores policy evaluation and control through game simulation.',
+    tags: ['Python', 'Reinforcement Learning', 'Monte Carlo'],
+    github: 'https://github.com/Farzan-Kh/25Blackjack',
+    live: '',
+  },
+];
+---
+
+<section id="projects">
+  <div class="container">
+    <p class="mono">// projects</p>
+    <h2 class="section-title">Selected work</h2>
+    <p class="section-sub">Personal and open-source projects.</p>
+
+    <div class="project-list">
+      {projects.map((p, i) => (
+        <div class="project-row">
+          <div class="project-left">
+            <span class="index mono">{String(i + 1).padStart(2, '0')}</span>
+            <div class="project-info">
+              <h3>{p.name}</h3>
+              <p>{p.description}</p>
+              <div class="tags">
+                {p.tags.map(t => <span>{t}</span>)}
+              </div>
+            </div>
+          </div>
+          <div class="project-links">
+            {p.github && <a href={p.github} target="_blank" rel="noopener">gh ↗</a>}
+            {p.live && <a href={p.live} target="_blank" rel="noopener">live ↗</a>}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .project-list {
+    margin-top: 2.5rem;
+  }
+
+  .project-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .project-row:first-child { border-top: 1px solid var(--border); }
+
+  .project-left {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    flex: 1;
+  }
+
+  .index {
+    color: var(--text-dim);
+    padding-top: 0.1rem;
+    min-width: 24px;
+  }
+
+  .project-info h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #f5f5f5;
+    margin-bottom: 0.4rem;
+  }
+
+  .project-info p {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    max-width: 520px;
+    margin-bottom: 0.75rem;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .tags span {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 0.1rem 0.45rem;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 1rem;
+    padding-top: 0.1rem;
+    flex-shrink: 0;
+  }
+
+  .project-links a {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    transition: color 0.15s;
+  }
+
+  .project-links a:hover { color: var(--accent); }
+
+  @media (max-width: 580px) {
+    .project-row { flex-direction: column; gap: 1rem; }
+    .project-links { padding-top: 0; }
+  }
+</style>

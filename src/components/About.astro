@@ -1,0 +1,107 @@
+---
+const skills = [
+  { category: 'Languages', items: ['Go', 'Python', 'C/C++', 'SQL'] },
+  { category: 'Backend', items: ['PostgreSQL', 'REST API', 'GraphQL', 'Message Brokers', 'Microservices'] },
+  { category: 'Security', items: ['Penetration Testing', 'Code Audit', 'Fuzzing', 'Reverse Engineering', 'Burp Suite'] },
+  { category: 'Infra', items: ['Docker', 'Kubernetes', 'Linux', 'Git', 'Cloud Computing'] },
+];
+---
+
+<section id="about">
+  <div class="container">
+    <p class="mono">// about</p>
+    <h2 class="section-title">About me</h2>
+
+    <div class="about-grid">
+      <div class="bio">
+        <p>
+          I like making things that just work — under pressure, in production,
+          and even when someone tries to break them. I care about architecture:
+          clean layers, clear boundaries, and minimal complexity. I write code
+          that's meant to last.
+        </p>
+        <p>
+          Security shapes how I approach engineering. I think about bugs that
+          actually matter — logic flaws, memory issues, design oversights — and
+          how to avoid them from the start. I've spent time on auditing, fuzzing,
+          and reverse engineering, and that mindset carries into everything I build.
+        </p>
+        <p class="quote">"Assume compromise. Build accordingly."</p>
+      </div>
+
+      <div class="skills">
+        {skills.map(group => (
+          <div class="skill-row">
+            <span class="skill-cat mono">{group.category}</span>
+            <div class="skill-items">
+              {group.items.map(s => <span class="item">{s}</span>)}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 2rem;
+  }
+
+  .bio p {
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    font-size: 0.975rem;
+  }
+
+  .quote {
+    font-family: var(--mono);
+    font-size: 0.8rem !important;
+    color: var(--accent) !important;
+    margin-top: 1.5rem !important;
+  }
+
+  .skills {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .skill-row {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 1rem;
+    align-items: start;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .skill-row:last-child { border-bottom: none; }
+
+  .skill-cat { color: var(--text-dim); }
+
+  .skill-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .item {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 0.15rem 0.55rem;
+    font-family: var(--mono);
+  }
+
+  @media (max-width: 700px) {
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .skill-row { grid-template-columns: 80px 1fr; }
+  }
+</style>
